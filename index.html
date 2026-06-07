@@ -25,24 +25,56 @@
         .modal-container {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
+        .bg-deco {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url('images/bg_deco2_20260607_171922.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.18;
+        }
+        #app {
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-orange-100 via-rose-100 to-sky-200 flex items-center justify-center min-h-screen p-4" data-theme="student">
+
+    <!-- 背景裝飾圖 -->
+    <div class="bg-deco"></div>
 
     <div id="app" class="w-full max-w-lg mx-auto">
         <!-- 家長查詢介面 -->
         <div id="student-view" class="main-card bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl relative pb-10">
             <div id="query-section">
-                <h1 class="text-2xl font-bold text-center text-orange-800 mb-2">互動式自主查詢系統</h1>
-                <p class="text-center text-stone-500 text-sm mb-6">✨ 每一個人都是閃亮的星子，不會因為座標偏遠而放棄發光！ ✨</p>
+                <!-- Logo + 標題 -->
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <img src="images/logo_icon2_20260607_171925.png" alt="系統圖示" class="w-10 h-10 object-contain">
+                    <h1 class="text-2xl font-bold text-center text-orange-800">互動式自主查詢系統</h1>
+                </div>
+                <p class="text-center text-stone-500 text-sm mb-3">✨ 每一個人都是閃亮的星子，不會因為座標偏遠而放棄發光！ ✨</p>
+
+                <!-- Hero 插圖 -->
+                <div class="flex justify-center mb-5">
+                    <img src="images/hero4_20260607_172241.png" alt="可愛插圖" class="w-full rounded-xl shadow-md object-contain" style="max-height: min(45vw, 220px);">
+                </div>
+
                 <div class="space-y-4">
                     <div>
                         <label for="student-code" class="block text-sm font-medium text-stone-600">查詢代碼</label>
                         <input type="text" id="student-code" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500" placeholder="請輸入您的查詢代碼">
-                        <p class="text-xs text-stone-400 text-center mt-2 px-2 leading-relaxed">
-                            💖 成績不過是航海時的浮標，不決定船的去向。<br>
-                            決定航程的是孩子心裡那股想再學一次的勇氣 💖
-                        </p>
+
+                        <!-- 勵志標語 + 小帆船插圖 -->
+                        <div class="flex items-center justify-center gap-3 mt-3 px-2">
+                            <img src="images/quote_illust2_20260607_171925.png" alt="帆船插圖" class="w-14 h-14 object-contain flex-shrink-0">
+                            <p class="text-xs text-stone-400 leading-relaxed text-center">
+                                💖 成績不過是航海時的浮標，不決定船的去向。<br>
+                                決定航程的是孩子心裡那股想再學一次的勇氣 💖
+                            </p>
+                        </div>
                     </div>
                     <div class="flex items-center space-x-2">
                         <button id="query-btn" class="w-full btn-press bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
@@ -59,10 +91,18 @@
             <div id="result-section" class="hidden mt-6">
                 <div class="mb-4 border-b pb-4">
                     <h2 class="text-xl font-bold text-center text-orange-800">查詢結果</h2>
-                     <p class="text-sm text-stone-500 text-center mt-2 px-2 leading-relaxed">
-                        💖 成績不過是航海時的浮標，不決定船的去向。<br>
-                        決定航程的是孩子心裡那股想再學一次的勇氣 💖
-                    </p>
+                    <!-- 結果區插圖 -->
+                    <div class="my-3">
+                        <img src="images/result_family_wide_20260607_173813.png" alt="成績查詢插圖" class="w-full rounded-xl object-contain drop-shadow-md" style="max-height: min(40vw, 200px);">
+                    </div>
+                    <!-- 勵志標語 + 小帆船插圖（結果頁） -->
+                    <div class="flex items-center justify-center gap-3 px-2">
+                        <img src="images/quote_illust2_20260607_171925.png" alt="帆船插圖" class="w-12 h-12 object-contain flex-shrink-0">
+                        <p class="text-sm text-stone-500 leading-relaxed text-center">
+                            💖 成績不過是航海時的浮標，不決定船的去向。<br>
+                            決定航程的是孩子心裡那股想再學一次的勇氣 💖
+                        </p>
+                    </div>
                      <div class="mt-4 text-left">
                         <p id="student-seat" class="font-semibold text-stone-700" style="font-size: 1.125rem; font-weight: 600;"></p>
                         <p id="student-name" class="font-semibold text-stone-700" style="font-size: 1.125rem; font-weight: 600;"></p>
@@ -84,7 +124,11 @@
 
         <!-- 老師登入介面 -->
         <div id="teacher-login-view" class="hidden main-card bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl">
-            <h1 class="text-2xl font-bold text-center text-amber-800 mb-6">老師管理登入</h1>
+            <!-- Logo + 標題 -->
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <img src="images/logo_icon2_20260607_171925.png" alt="系統圖示" class="w-9 h-9 object-contain">
+                <h1 class="text-2xl font-bold text-center text-amber-800">老師管理登入</h1>
+            </div>
             <div class="space-y-4">
                 <div>
                     <label for="teacher-password" class="block text-sm font-medium text-stone-600">管理密碼</label>
@@ -94,11 +138,14 @@
                 <button id="back-to-student-view-btn" class="w-full btn-press bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all">返回家長查詢</button>
             </div>
         </div>
-        
+
         <!-- 老師管理後台 -->
         <div id="teacher-admin-view" class="hidden main-card bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-4xl mx-auto">
              <div class="flex justify-between items-center mb-6 border-b pb-2">
-                <h1 class="text-2xl font-bold text-amber-800">資料管理後台</h1>
+                <div class="flex items-center gap-2">
+                    <img src="images/logo_icon2_20260607_171925.png" alt="系統圖示" class="w-8 h-8 object-contain">
+                    <h1 class="text-2xl font-bold text-amber-800">資料管理後台</h1>
+                </div>
                 <div>
                     <button id="back-to-main-btn" class="btn-press bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all mr-2">返回主頁</button>
                     <button id="logout-btn" class="btn-press bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all">登出</button>
@@ -140,7 +187,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Template Guide Modal -->
     <div id="template-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
         <div class="modal-overlay fixed inset-0 bg-black/50"></div>
@@ -157,7 +204,7 @@
                 <p>我們已經為您準備好了一份包含所有正確欄位的範本。請點擊下方連結，直接建立一份您自己的副本：</p>
                 <a href="https://docs.google.com/spreadsheets/d/1w_3B4Bw1Fws3OM2d_S_1-LqQxS-t_uV-wXyZ_aB-cDE/copy" target="_blank" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg my-2 hover:bg-blue-600">點此一鍵複製範本試算表</a>
                 <p>點擊後，您的瀏覽器會提示您「建立副本」，請按下藍色的「建立副本」按鈕。這份新的試算表將會自動儲存到您自己的 Google 雲端硬碟中。</p>
-                
+
                 <h3 class="font-bold">步驟二：發布您的「系統設定」工作表</h3>
                 <p>為了讓網站讀取資料，您只需要發布其中一個名為 `系統設定` 的工作表即可。</p>
                 <ol class="list-decimal list-inside space-y-2">
@@ -236,7 +283,7 @@
             studentCodeInput.disabled = isLoading;
             queryBtn.disabled = isLoading;
             queryBtnText.textContent = message;
-            
+
             if (isLoading) {
                 queryBtn.classList.add('opacity-70', 'cursor-not-allowed');
                 searchIcon.classList.add('hidden');
@@ -317,7 +364,7 @@
             try {
                 const configCsv = await fetchCSV(config.configSheetUrl);
                 configData = configCsv.slice(1);
-                
+
                 const studentListConfig = configData.find(row => row[0] === '[學生名單]');
                 if (!studentListConfig) {
                     throw new Error('在您的「系統設定」表中找不到 "[學生名單]" 的設定。');
@@ -358,7 +405,7 @@
                     const categoryData = categoryCsv.slice(1);
                     allDataCache[categoryName] = { headers, data: categoryData };
                 }
-                
+
                 return true;
             } catch (error) {
                 alert(`資料載入失敗：${error.message}`);
@@ -366,7 +413,7 @@
                 return false;
             }
         }
-        
+
         function findStudent(code) {
             return studentList.find(s => s.code === code);
         }
@@ -378,7 +425,7 @@
             for (const categoryName in allDataCache) {
                 const { headers, data } = allDataCache[categoryName];
                 const studentRow = data.find(row => row[0] === studentSeat);
-                
+
                 if (studentRow) {
                     studentData[categoryName] = {};
                     headers.slice(2).forEach((header, index) => {
@@ -398,7 +445,7 @@
                 .filter(categoryName => studentData[categoryName])
                 .map(categoryName => `<option value="${categoryName}">${categoryName}</option>`)
                 .join('');
-            
+
             if (categorySelect.options.length === 0) {
                  resultContent.innerHTML = `<p class="text-center text-gray-500">目前沒有這位學生的成績資料可供查詢。</p>`;
                  return;
@@ -408,90 +455,105 @@
             renderResultContent(studentData, selectedCategory);
         }
 
+        function formatValue(raw) {
+            let v = escapeHTML(raw || '');
+            if (v.includes('\n')) {
+                const lines = v.split('\n').filter(l => l.trim() !== '');
+                if (lines.length > 1) {
+                    return `<ul class="list-disc list-inside text-left space-y-0.5">${lines.map(l => `<li>${l}</li>`).join('')}</ul>`;
+                }
+            }
+            return v;
+        }
+
+        function scoreColor(val) {
+            const n = parseFloat(val);
+            if (isNaN(n)) return 'bg-stone-100 text-stone-700';
+            if (n >= 90) return 'bg-emerald-400 text-white';
+            if (n >= 80) return 'bg-sky-400 text-white';
+            if (n >= 70) return 'bg-amber-400 text-white';
+            if (n >= 60) return 'bg-orange-400 text-white';
+            return 'bg-rose-400 text-white';
+        }
+
         function renderResultContent(studentData, categoryName) {
             const data = studentData[categoryName];
             if (!data) {
-                resultContent.innerHTML = `<p class="text-center text-gray-500">此類別尚無資料。</p>`;
+                resultContent.innerHTML = `<p class="text-center text-gray-400 py-6">此類別尚無資料。</p>`;
                 return;
-            }
-
-            if (Object.keys(subjectCategoryMap).length === 0) {
-                const tableRows = Object.entries(data).map(([key, value]) => {
-                    let formattedValue = escapeHTML(value || '');
-                    if(formattedValue.includes('\n')) {
-                        const lines = formattedValue.split('\n').filter(line => line.trim() !== '');
-                        if (lines.length > 1) {
-                            formattedValue = `<ul class="list-disc list-inside text-left inline-block">${lines.map(line => `<li>${line}</li>`).join('')}</ul>`;
-                        }
-                    }
-                    return `
-                        <tr class="border-b">
-                            <td class="py-3 px-4 font-medium text-stone-700 w-1/3 text-left">${escapeHTML(key)}</td>
-                            <td class="py-3 px-4 text-stone-800 text-center" style="font-size: 1.1rem;">${formattedValue}</td>
-                        </tr>
-                    `;
-                }).join('');
-
-                resultContent.innerHTML = `
-                    <div class="overflow-x-auto rounded-lg border">
-                        <table class="w-full bg-white">
-                            <tbody class="divide-y">
-                                ${tableRows.replaceAll('<tr class="border-b">', '<tr class="border-b bg-orange-50 odd:bg-white">')}
-                            </tbody>
-                        </table>
-                    </div>`;
-                return;
-            }
-
-            const groupedData = {};
-            for (const [subject, value] of Object.entries(data)) {
-                 const category = subjectCategoryMap[subject.trim()] || '其它項目';
-                 if (!groupedData[category]) {
-                    groupedData[category] = [];
-                 }
-                 groupedData[category].push({ subject, value });
             }
 
             const categoryColors = {
-                '語文': { bg: 'bg-sky-100', text: 'text-sky-800' },
-                '數理': { bg: 'bg-emerald-100', text: 'text-emerald-800' },
-                '社會': { bg: 'bg-amber-100', text: 'text-amber-800' },
-                '藝文': { bg: 'bg-fuchsia-100', text: 'text-fuchsia-800' },
-                '學習狀況': { bg: 'bg-rose-100', text: 'text-rose-800' },
-                '拖欠': { bg: 'bg-rose-100', text: 'text-rose-800' },
-                '其它項目': { bg: 'bg-stone-100', text: 'text-stone-800' },
+                '語文':    { header: 'bg-sky-500',      badge: 'bg-sky-500'      },
+                '數理':    { header: 'bg-emerald-500',  badge: 'bg-emerald-500'  },
+                '社會':    { header: 'bg-amber-500',    badge: 'bg-amber-500'    },
+                '自然':    { header: 'bg-teal-500',     badge: 'bg-teal-500'     },
+                '英文':    { header: 'bg-violet-500',   badge: 'bg-violet-500'   },
+                '藝文':    { header: 'bg-fuchsia-500',  badge: 'bg-fuchsia-500'  },
+                '學習狀況':{ header: 'bg-rose-500',     badge: 'bg-rose-500'     },
+                '拖欠':    { header: 'bg-red-500',      badge: 'bg-red-500'      },
+                '其它項目':{ header: 'bg-stone-400',    badge: 'bg-stone-400'    },
             };
-            
+            // 支援類別名稱包含關鍵字的模糊匹配
+            function getCategoryColor(cat) {
+                if (categoryColors[cat]) return categoryColors[cat];
+                for (const key of Object.keys(categoryColors)) {
+                    if (cat.includes(key) || key.includes(cat)) return categoryColors[key];
+                }
+                return categoryColors['其它項目'];
+            }
+
+            // 無分類模式
+            if (Object.keys(subjectCategoryMap).length === 0) {
+                const cards = Object.entries(data).map(([key, value]) => {
+                    const formatted = formatValue(value);
+                    const isNumeric = !isNaN(parseFloat(value)) && value.trim() !== '';
+                    const badgeCls = isNumeric ? scoreColor(value) : 'bg-orange-100 text-orange-800';
+                    return `
+                        <div class="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-3 shadow-sm border border-orange-100">
+                            <span class="text-stone-700 font-medium text-sm flex-1">${escapeHTML(key)}</span>
+                            <span class="inline-flex items-center justify-center min-w-[3rem] px-3 py-1 rounded-full font-bold text-sm ${badgeCls} shadow-sm">${formatted}</span>
+                        </div>`;
+                }).join('');
+                resultContent.innerHTML = `<div class="space-y-2">${cards}</div>`;
+                return;
+            }
+
+            // 分類模式
+            const groupedData = {};
+            for (const [subject, value] of Object.entries(data)) {
+                const cat = subjectCategoryMap[subject.trim()] || '其它項目';
+                if (!groupedData[cat]) groupedData[cat] = [];
+                groupedData[cat].push({ subject, value });
+            }
+
             let html = '<div class="space-y-4">';
-            for (const [category, items] of Object.entries(groupedData)) {
-                 const color = categoryColors[category] || categoryColors['其它項目'];
-                 html += `
-                    <div class="rounded-lg overflow-hidden border">
-                        <h4 class="${color.bg} ${color.text} font-bold p-2 text-center">${escapeHTML(category)}</h4>
-                        <table class="w-full bg-white">
-                            <tbody>`;
+            for (const [cat, items] of Object.entries(groupedData)) {
+                const color = getCategoryColor(cat);
+                html += `
+                    <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="${color.header} text-white font-bold px-4 py-2 text-center text-sm tracking-wide">
+                            ${escapeHTML(cat)}
+                        </div>
+                        <div class="bg-white divide-y divide-gray-100">`;
                 items.forEach(({ subject, value }) => {
-                    let formattedValue = escapeHTML(value || '');
-                    if(formattedValue.includes('\n')) {
-                        const lines = formattedValue.split('\n').filter(line => line.trim() !== '');
-                        if (lines.length > 1) {
-                            formattedValue = `<ul class="list-disc list-inside text-left inline-block">${lines.map(line => `<li>${line}</li>`).join('')}</ul>`;
-                        }
-                    }
+                    const formatted = formatValue(value);
+                    const isNumeric = !isNaN(parseFloat(value)) && value.trim() !== '';
+                    const badgeCls = isNumeric ? scoreColor(value) : `${color.header} text-white`;
                     html += `
-                        <tr class="border-b last:border-b-0 bg-orange-50 odd:bg-white">
-                            <td class="py-3 px-4 font-medium text-stone-700 w-1/3 text-left">${escapeHTML(subject)}</td>
-                            <td class="py-3 px-4 text-stone-800 text-center" style="font-size: 1.1rem;">${formattedValue}</td>
-                        </tr>`;
+                        <div class="flex items-center justify-between gap-3 px-4 py-3">
+                            <span class="text-stone-700 font-medium text-sm flex-1">${escapeHTML(subject)}</span>
+                            <span class="inline-flex items-center justify-center min-w-[3rem] px-3 py-1 rounded-full font-bold text-sm ${badgeCls} shadow-sm">${formatted}</span>
+                        </div>`;
                 });
-                html += `</tbody></table></div>`;
+                html += `</div></div>`;
             }
             html += '</div>';
             resultContent.innerHTML = html;
         }
-        
+
         function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
+            return str.replace(/[&<>'"]/g,
                 tag => ({
                     '&': '&amp;',
                     '<': '&lt;',
@@ -501,12 +563,12 @@
                 }[tag] || tag)
             );
         }
-        
+
         function showView(view) {
             studentView.classList.add('hidden');
             teacherLoginView.classList.add('hidden');
             teacherAdminView.classList.add('hidden');
-            
+
             if (view === 'student') {
                 studentView.classList.remove('hidden');
             } else if (view === 'login') {
@@ -522,12 +584,12 @@
                 alert('請輸入查詢代碼。');
                 return;
             }
-            
+
             setQueryState(true, '查詢中...');
             const success = await loadAllData();
-            
+
             if (!success) {
-                setQueryState(false, '開始查詢'); 
+                setQueryState(false, '開始查詢');
                 return;
             }
 
@@ -536,7 +598,7 @@
             if (student) {
                 studentSeat.textContent = `座號：${student.seat}`;
                 studentName.textContent = `姓名：${student.name}`;
-                
+
                 const studentData = getStudentData(student);
                 displayStudentData(studentData);
 
@@ -547,7 +609,7 @@
             }
             setQueryState(false, '開始查詢');
         }
-        
+
 
         function handleTeacherLogin() {
             if (teacherPasswordInput.value === teacherPassword) {
@@ -558,7 +620,7 @@
                 alert('密碼錯誤！');
             }
         }
-        
+
         function handleUpdatePassword() {
             const newPassword = newPasswordInput.value;
             const confirmPassword = confirmPasswordInput.value;
@@ -576,7 +638,7 @@
             teacherPassword = newPassword;
             localStorage.setItem('grade-system-password', newPassword);
             alert('密碼已成功更新！');
-            
+
             newPasswordInput.value = '';
             confirmPasswordInput.value = '';
         }
@@ -585,7 +647,7 @@
             configDisplay.textContent = config.configSheetUrl;
             updateDataPreview();
         }
-        
+
         function updateDataPreview() {
              if (studentList.length > 0) {
                 dataPreview.innerHTML = `成功載入 ${studentList.length} 位學生。<br>${studentList.map(s => `[${s.seat}] ${s.name}`).join('<br>')}`;
@@ -651,7 +713,7 @@
                 sessionStorage.removeItem('teacher-logged-in');
                 showView('student');
             });
-            
+
             categorySelect.addEventListener('change', (e) => {
                 const student = findStudent(currentStudentQuery);
                 if (student) {
@@ -678,4 +740,3 @@
     </script>
 </body>
 </html>
-
